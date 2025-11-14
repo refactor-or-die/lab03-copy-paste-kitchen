@@ -7,15 +7,6 @@ class SaladRecipe(Recipe):
         self.prep_time = 15
         self.cook_time = 0  # Salatka nie wymaga gotowania!
 
-    def get_name(self) -> str:
-        return self.name
-
-    def get_prep_time(self) -> int:
-        return self.prep_time
-
-    def get_cook_time(self) -> int:
-        return self.cook_time
-
     def gather_ingredients(self) -> str:
 
         steps = []

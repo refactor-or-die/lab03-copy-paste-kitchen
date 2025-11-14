@@ -7,15 +7,6 @@ class PastaRecipe(Recipe):
         self.prep_time = 10
         self.cook_time = 20
 
-    def get_name(self) -> str:
-        return self.name
-
-    def get_prep_time(self) -> int:
-        return self.prep_time
-
-    def get_cook_time(self) -> int:
-        return self.cook_time
-
     def gather_ingredients(self) -> str:
 
         steps = []

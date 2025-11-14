@@ -3,6 +3,15 @@ from typing import Dict
 
 class Recipe(ABC):
 
+    def get_name(self) -> str:
+        return self.name
+
+    def get_prep_time(self) -> int:
+        return self.prep_time
+
+    def get_cook_time(self) -> int:
+        return self.cook_time
+
     def prepare(self) -> Dict:
 
         steps = []
@@ -40,18 +49,6 @@ class Recipe(ABC):
         steps.append("SMACZNEGO!")
         steps.append("=" * 50)
         return "\n".join(steps)
-
-    @abstractmethod
-    def get_name(self) -> str:
-        pass
-
-    @abstractmethod
-    def get_prep_time(self) -> int:
-        pass
-
-    @abstractmethod
-    def get_cook_time(self) -> int:
-        pass
 
     @abstractmethod
     def gather_ingredients(self) -> str:
