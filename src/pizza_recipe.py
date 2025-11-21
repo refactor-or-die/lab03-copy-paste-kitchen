@@ -10,8 +10,7 @@ class PizzaRecipe(Recipe):
     def gather_ingredients(self) -> str:
 
         steps = []
-        
-        steps.append("\n[KROK 1] Zbierz skladniki:")
+
         steps.append("  - Maka 300g")
         steps.append("  - Drozdze 7g")
         steps.append("  - Sos pomidorowy 200ml")
@@ -24,7 +23,6 @@ class PizzaRecipe(Recipe):
 
         steps = []
 
-        steps.append("\n[KROK 2] Przygotuj skladniki:")
         steps.append("  - Zrob ciasto z maki, drozdzy i wody")
         steps.append("  - Zostaw do wyrośniecia 1h")
         steps.append("  - Pokroj mozzarelle")
@@ -35,7 +33,6 @@ class PizzaRecipe(Recipe):
 
         steps = []
 
-        steps.append("\n[KROK 3] Gotuj:")
         steps.append("  - Nagrzej piekarnik do 220°C")
         steps.append("  - Rozwałkuj ciasto")
         steps.append("  - Posmaruj sosem")
@@ -48,7 +45,6 @@ class PizzaRecipe(Recipe):
 
         steps = []
 
-        steps.append("\n[KROK 4] Podaj danie:")
         steps.append("  - Wyjmij z piekarnika")
         steps.append("  - Dodaj swieża bazylie")
         steps.append("  - Pokroj na kawalki")

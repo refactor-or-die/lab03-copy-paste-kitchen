@@ -11,7 +11,6 @@ class SoupRecipe(Recipe):
 
         steps = []
 
-        steps.append("\n[KROK 1] Zbierz skladniki:")
         steps.append("  - Pomidory 1kg")
         steps.append("  - Bulion 1l")
         steps.append("  - Smietanka 200ml")
@@ -24,7 +23,6 @@ class SoupRecipe(Recipe):
 
         steps = []
 
-        steps.append("\n[KROK 2] Przygotuj skladniki:")
         steps.append("  - Pokroj pomidory")
         steps.append("  - Posiekaj cebule")
         steps.append("  - Odmierz makaron")
@@ -35,7 +33,6 @@ class SoupRecipe(Recipe):
 
         steps = []
 
-        steps.append("\n[KROK 3] Gotuj:")
         steps.append("  - Podsmaż cebule")
         steps.append("  - Dodaj pomidory, duś 10 min")
         steps.append("  - Zalej bulionem")
@@ -50,7 +47,6 @@ class SoupRecipe(Recipe):
 
         steps = []
 
-        steps.append("\n[KROK 4] Podaj danie:")
         steps.append("  - Przelej do misek")
         steps.append("  - Dodaj groszek ptysiowy")
         

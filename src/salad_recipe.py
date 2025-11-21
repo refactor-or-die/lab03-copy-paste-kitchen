@@ -10,8 +10,7 @@ class SaladRecipe(Recipe):
     def gather_ingredients(self) -> str:
 
         steps = []
-        
-        steps.append("\n[KROK 1] Zbierz skladniki:")
+
         steps.append("  - Pomidor 3 szt")
         steps.append("  - Ogorek 1 szt")
         steps.append("  - Feta 150g")
@@ -24,7 +23,6 @@ class SaladRecipe(Recipe):
 
         steps = []
 
-        steps.append("\n[KROK 2] Przygotuj skladniki:")
         steps.append("  - Pokroj pomidory w osemki")
         steps.append("  - Pokroj ogorka w plastry")
         steps.append("  - Pokrusz fete")
@@ -35,7 +33,6 @@ class SaladRecipe(Recipe):
 
         steps = []
 
-        steps.append("\n[KROK 3] Gotuj:")
         steps.append("  - Wymieszaj warzywa w misce")
         steps.append("  - Dodaj oliwki")
         steps.append("  - Polej oliwa")
@@ -47,7 +44,6 @@ class SaladRecipe(Recipe):
 
         steps = []
 
-        steps.append("\n[KROK 4] Podaj danie:")
         steps.append("  - Przeloz na talerz")
         steps.append("  - Posyp oregano")
         

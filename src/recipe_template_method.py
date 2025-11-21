@@ -17,11 +17,15 @@ class Recipe(ABC):
         steps = []
 
         steps.append(self.header())
+        steps.append("\n[KROK 1] Zbierz skladniki:")
         steps.append(self.gather_ingredients())
+        steps.append("\n[KROK 2] Przygotuj skladniki:")
         steps.append(self.prepare_ingredients())
+        steps.append("\n[KROK 3] Gotuj:")
         steps.append(self.cook())
+        steps.append("\n[KROK 4] Podaj danie:")
         steps.append(self.serve())
-        steps.append(self.footer())
+        steps.append(self.foot())
 
         result = "\n".join(steps)
         print(result)
@@ -43,7 +47,7 @@ class Recipe(ABC):
         steps.append("=" * 50)
         return "\n".join(steps)
     
-    def footer(self) -> str:
+    def foot(self) -> str:
         steps = []
         steps.append("\n" + "=" * 50)
         steps.append("SMACZNEGO!")
