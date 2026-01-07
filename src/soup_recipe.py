@@ -1,0 +1,53 @@
+from recipe_template_method import Recipe
+
+class SoupRecipe(Recipe):
+    
+    def __init__(self):
+        self.name = "Zupa Pomidorowa"
+        self.prep_time = 10
+        self.cook_time = 30
+
+    def gather_ingredients(self) -> str:
+
+        steps = []
+
+        steps.append("  - Pomidory 1kg")
+        steps.append("  - Bulion 1l")
+        steps.append("  - Smietanka 200ml")
+        steps.append("  - Cebula 1 szt")
+        steps.append("  - Makaron drobny 100g")
+
+        return "\n".join(steps)
+
+    def prepare_ingredients(self) -> str:
+
+        steps = []
+
+        steps.append("  - Pokroj pomidory")
+        steps.append("  - Posiekaj cebule")
+        steps.append("  - Odmierz makaron")
+
+        return "\n".join(steps)
+
+    def cook(self) -> str:
+
+        steps = []
+
+        steps.append("  - Podsmaż cebule")
+        steps.append("  - Dodaj pomidory, duś 10 min")
+        steps.append("  - Zalej bulionem")
+        steps.append("  - Gotuj 15 min")
+        steps.append("  - Zmiksuj")
+        steps.append("  - Dodaj smietanke i makaron")
+        steps.append("  - Gotuj 5 min")
+
+        return "\n".join(steps)
+
+    def serve(self) -> str:
+
+        steps = []
+
+        steps.append("  - Przelej do misek")
+        steps.append("  - Dodaj groszek ptysiowy")
+        
+        return "\n".join(steps)
