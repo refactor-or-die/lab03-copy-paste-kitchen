@@ -13,261 +13,200 @@ Kazdy przepis ma te same kroki:
 Ale szczegoly sa rozne dla kazdego przepisu!
 """
 from typing import List, Dict
+from abc import ABC, abstractmethod
 
+class Recipe(ABC):
+    def prepare(self) -> Dict:
+        self.init_steps()
+        self.header()
+        self.gatherIngredients()
+        self.prepwork()
+        self.cook()
+        self.serve()
+        self.footer()
+        result = "\n".join(self.steps)
+        print(result)
+        return {
+            "name": self.name,
+            "prep_time": self.prep_time,
+            "cook_time": self.cook_time,
+            "total_time": self.prep_time + self.cook_time,
+            "steps": self.steps
+        }
 
-class PastaRecipe:
+    def init_steps(self):
+        self.steps = []
+    
+    def header(self):
+        self.steps.append("=" * 50)
+        self.steps.append(f"PRZEPIS: {self.name}")
+        self.steps.append(f"Czas przygotowania: {self.prep_time} min")
+        self.steps.append(f"Czas gotowania: {self.cook_time} min")
+        self.steps.append("=" * 50)
+    
+    @abstractmethod
+    def gatherIngredients(self):
+        pass
+    @abstractmethod
+    def prepwork(self):
+        pass
+    @abstractmethod
+    def cook(self):
+        pass
+    @abstractmethod
+    def serve(self):
+        pass
+        
+    def footer(self):
+        self.steps.append("\n" + "=" * 50)
+        self.steps.append("SMACZNEGO!")
+        self.steps.append("=" * 50)
+
+class PastaRecipe(Recipe):
     """Przepis na makaron - pelno powielonego kodu!"""
     
     def __init__(self):
         self.name = "Spaghetti Bolognese"
         self.prep_time = 10
         self.cook_time = 20
-    
-    def prepare(self) -> Dict:
-        """Przygotuj danie wedlug przepisu"""
-        steps = []
         
-        # Naglowek
-        steps.append("=" * 50)
-        steps.append(f"PRZEPIS: {self.name}")
-        steps.append(f"Czas przygotowania: {self.prep_time} min")
-        steps.append(f"Czas gotowania: {self.cook_time} min")
-        steps.append("=" * 50)
+    def gatherIngredients(self):
+        self.steps.append("\n[KROK 1] Zbierz skladniki:")
+        self.steps.append("  - Makaron spaghetti 250g")
+        self.steps.append("  - Mielone mieso 300g")
+        self.steps.append("  - Sos pomidorowy 400ml")
+        self.steps.append("  - Cebula 1 szt")
+        self.steps.append("  - Czosnek 2 zabki")
         
-        # Krok 1: Skladniki
-        steps.append("\n[KROK 1] Zbierz skladniki:")
-        steps.append("  - Makaron spaghetti 250g")
-        steps.append("  - Mielone mieso 300g")
-        steps.append("  - Sos pomidorowy 400ml")
-        steps.append("  - Cebula 1 szt")
-        steps.append("  - Czosnek 2 zabki")
+    def prepwork(self):
+        self.steps.append("\n[KROK 2] Przygotuj skladniki:")
+        self.steps.append("  - Pokroj cebule w kostke")
+        self.steps.append("  - Posiekaj czosnek")
+        self.steps.append("  - Odmierz makaron")
         
-        # Krok 2: Przygotowanie
-        steps.append("\n[KROK 2] Przygotuj skladniki:")
-        steps.append("  - Pokroj cebule w kostke")
-        steps.append("  - Posiekaj czosnek")
-        steps.append("  - Odmierz makaron")
+    def cook(self):
+        self.steps.append("\n[KROK 3] Gotuj:")
+        self.steps.append("  - Zagotuj wode z sola")
+        self.steps.append("  - Wrzuc makaron, gotuj 10 min")
+        self.steps.append("  - Podsmaż cebule i czosnek")
+        self.steps.append("  - Dodaj mieso, smaż 5 min")
+        self.steps.append("  - Dodaj sos, gotuj 10 min")
         
-        # Krok 3: Gotowanie
-        steps.append("\n[KROK 3] Gotuj:")
-        steps.append("  - Zagotuj wode z sola")
-        steps.append("  - Wrzuc makaron, gotuj 10 min")
-        steps.append("  - Podsmaż cebule i czosnek")
-        steps.append("  - Dodaj mieso, smaż 5 min")
-        steps.append("  - Dodaj sos, gotuj 10 min")
-        
-        # Krok 4: Podawanie
-        steps.append("\n[KROK 4] Podaj danie:")
-        steps.append("  - Odcedz makaron")
-        steps.append("  - Polej sosem")
-        steps.append("  - Posyp parmezanem")
-        
-        # Stopka
-        steps.append("\n" + "=" * 50)
-        steps.append("SMACZNEGO!")
-        steps.append("=" * 50)
-        
-        result = "\n".join(steps)
-        print(result)
-        
-        return {
-            "name": self.name,
-            "prep_time": self.prep_time,
-            "cook_time": self.cook_time,
-            "total_time": self.prep_time + self.cook_time,
-            "steps": steps
-        }
-
-
-class PizzaRecipe:
+    def serve(self):
+        self.steps.append("\n[KROK 4] Podaj danie:")
+        self.steps.append("  - Odcedz makaron")
+        self.steps.append("  - Polej sosem")
+        self.steps.append("  - Posyp parmezanem")
+class PizzaRecipe(Recipe):
     """Przepis na pizze - ZNOWU to samo! Copy-paste!"""
     
     def __init__(self):
         self.name = "Pizza Margherita"
         self.prep_time = 15
         self.cook_time = 25
-    
-    def prepare(self) -> Dict:
-        """Przygotuj danie wedlug przepisu"""
-        steps = []
         
-        # Naglowek - identyczny jak w PastaRecipe!
-        steps.append("=" * 50)
-        steps.append(f"PRZEPIS: {self.name}")
-        steps.append(f"Czas przygotowania: {self.prep_time} min")
-        steps.append(f"Czas gotowania: {self.cook_time} min")
-        steps.append("=" * 50)
+    def gatherIngredients(self):
+        self.steps.append("\n[KROK 1] Zbierz skladniki:")
+        self.steps.append("  - Maka 300g")
+        self.steps.append("  - Drozdze 7g")
+        self.steps.append("  - Sos pomidorowy 200ml")
+        self.steps.append("  - Mozzarella 200g")
+        self.steps.append("  - Bazylia swieża")
         
-        # Krok 1: Skladniki
-        steps.append("\n[KROK 1] Zbierz skladniki:")
-        steps.append("  - Maka 300g")
-        steps.append("  - Drozdze 7g")
-        steps.append("  - Sos pomidorowy 200ml")
-        steps.append("  - Mozzarella 200g")
-        steps.append("  - Bazylia swieża")
+    def prepwork(self):
+        self.steps.append("\n[KROK 2] Przygotuj skladniki:")
+        self.steps.append("  - Zrob ciasto z maki, drozdzy i wody")
+        self.steps.append("  - Zostaw do wyrośniecia 1h")
+        self.steps.append("  - Pokroj mozzarelle")
         
-        # Krok 2: Przygotowanie
-        steps.append("\n[KROK 2] Przygotuj skladniki:")
-        steps.append("  - Zrob ciasto z maki, drozdzy i wody")
-        steps.append("  - Zostaw do wyrośniecia 1h")
-        steps.append("  - Pokroj mozzarelle")
+    def cook(self):
+        self.steps.append("\n[KROK 3] Gotuj:")
+        self.steps.append("  - Nagrzej piekarnik do 220°C")
+        self.steps.append("  - Rozwałkuj ciasto")
+        self.steps.append("  - Posmaruj sosem")
+        self.steps.append("  - Poloz ser")
+        self.steps.append("  - Piecz 15 min")
         
-        # Krok 3: Gotowanie
-        steps.append("\n[KROK 3] Gotuj:")
-        steps.append("  - Nagrzej piekarnik do 220°C")
-        steps.append("  - Rozwałkuj ciasto")
-        steps.append("  - Posmaruj sosem")
-        steps.append("  - Poloz ser")
-        steps.append("  - Piecz 15 min")
-        
-        # Krok 4: Podawanie
-        steps.append("\n[KROK 4] Podaj danie:")
-        steps.append("  - Wyjmij z piekarnika")
-        steps.append("  - Dodaj swieża bazylie")
-        steps.append("  - Pokroj na kawalki")
-        
-        # Stopka - znowu to samo!
-        steps.append("\n" + "=" * 50)
-        steps.append("SMACZNEGO!")
-        steps.append("=" * 50)
-        
-        result = "\n".join(steps)
-        print(result)
-        
-        return {
-            "name": self.name,
-            "prep_time": self.prep_time,
-            "cook_time": self.cook_time,
-            "total_time": self.prep_time + self.cook_time,
-            "steps": steps
-        }
+    def serve(self):
+        self.steps.append("\n[KROK 4] Podaj danie:")
+        self.steps.append("  - Wyjmij z piekarnika")
+        self.steps.append("  - Dodaj swieża bazylie")
+        self.steps.append("  - Pokroj na kawalki")
 
 
-class SaladRecipe:
+class SaladRecipe(Recipe):
     """Przepis na salatke - JESZCZE WIECEJ kopii tego samego!"""
     
     def __init__(self):
         self.name = "Salatka Grecka"
         self.prep_time = 15
         self.cook_time = 0  # Salatka nie wymaga gotowania!
-    
-    def prepare(self) -> Dict:
-        """Przygotuj danie wedlug przepisu"""
-        steps = []
         
-        # Naglowek - TEN SAM co wyzej!
-        steps.append("=" * 50)
-        steps.append(f"PRZEPIS: {self.name}")
-        steps.append(f"Czas przygotowania: {self.prep_time} min")
-        steps.append(f"Czas gotowania: {self.cook_time} min")
-        steps.append("=" * 50)
+    def gatherIngredients(self):
+        self.steps.append("\n[KROK 1] Zbierz skladniki:")
+        self.steps.append("  - Pomidor 3 szt")
+        self.steps.append("  - Ogorek 1 szt")
+        self.steps.append("  - Feta 150g")
+        self.steps.append("  - Oliwki 100g")
+        self.steps.append("  - Oliwa z oliwek")
         
-        # Krok 1: Skladniki
-        steps.append("\n[KROK 1] Zbierz skladniki:")
-        steps.append("  - Pomidor 3 szt")
-        steps.append("  - Ogorek 1 szt")
-        steps.append("  - Feta 150g")
-        steps.append("  - Oliwki 100g")
-        steps.append("  - Oliwa z oliwek")
+    def prepwork(self):
+        self.steps.append("\n[KROK 2] Przygotuj skladniki:")
+        self.steps.append("  - Pokroj pomidory w osemki")
+        self.steps.append("  - Pokroj ogorka w plastry")
+        self.steps.append("  - Pokrusz fete")
         
-        # Krok 2: Przygotowanie
-        steps.append("\n[KROK 2] Przygotuj skladniki:")
-        steps.append("  - Pokroj pomidory w osemki")
-        steps.append("  - Pokroj ogorka w plastry")
-        steps.append("  - Pokrusz fete")
+    def cook(self):
+        self.steps.append("\n[KROK 3] Gotuj:")
+        self.steps.append("  - Wymieszaj warzywa w misce")
+        self.steps.append("  - Dodaj oliwki")
+        self.steps.append("  - Polej oliwa")
+        self.steps.append("  - Posyp feta")
         
-        # Krok 3: Gotowanie - dla salatki to mieszanie!
-        steps.append("\n[KROK 3] Gotuj:")
-        steps.append("  - Wymieszaj warzywa w misce")
-        steps.append("  - Dodaj oliwki")
-        steps.append("  - Polej oliwa")
-        steps.append("  - Posyp feta")
-        
-        # Krok 4: Podawanie
-        steps.append("\n[KROK 4] Podaj danie:")
-        steps.append("  - Przeloz na talerz")
-        steps.append("  - Posyp oregano")
-        
-        # Stopka - i znowu to samo!
-        steps.append("\n" + "=" * 50)
-        steps.append("SMACZNEGO!")
-        steps.append("=" * 50)
-        
-        result = "\n".join(steps)
-        print(result)
-        
-        return {
-            "name": self.name,
-            "prep_time": self.prep_time,
-            "cook_time": self.cook_time,
-            "total_time": self.prep_time + self.cook_time,
-            "steps": steps
-        }
+    def serve(self):
+        self.steps.append("\n[KROK 4] Podaj danie:")
+        self.steps.append("  - Przeloz na talerz")
+        self.steps.append("  - Posyp oregano")
 
 
-class SoupRecipe:
+class SoupRecipe(Recipe):
     """Przepis na zupe - i tu tez kopiujemy jak szaleni!"""
     
     def __init__(self):
         self.name = "Zupa Pomidorowa"
         self.prep_time = 10
         self.cook_time = 30
-    
-    def prepare(self) -> Dict:
-        """Przygotuj danie wedlug przepisu"""
-        steps = []
         
-        # Naglowek - copy paste z 3 innych klas!
-        steps.append("=" * 50)
-        steps.append(f"PRZEPIS: {self.name}")
-        steps.append(f"Czas przygotowania: {self.prep_time} min")
-        steps.append(f"Czas gotowania: {self.cook_time} min")
-        steps.append("=" * 50)
+    def gatherIngredients(self):
+        self.steps.append("\n[KROK 1] Zbierz skladniki:")
+        self.steps.append("  - Pomidory 1kg")
+        self.steps.append("  - Bulion 1l")
+        self.steps.append("  - Smietanka 200ml")
+        self.steps.append("  - Cebula 1 szt")
+        self.steps.append("  - Makaron drobny 100g")
         
-        # Krok 1: Skladniki
-        steps.append("\n[KROK 1] Zbierz skladniki:")
-        steps.append("  - Pomidory 1kg")
-        steps.append("  - Bulion 1l")
-        steps.append("  - Smietanka 200ml")
-        steps.append("  - Cebula 1 szt")
-        steps.append("  - Makaron drobny 100g")
+    def prepwork(self):
+        self.steps.append("\n[KROK 2] Przygotuj skladniki:")
+        self.steps.append("  - Pokroj pomidory")
+        self.steps.append("  - Posiekaj cebule")
+        self.steps.append("  - Odmierz makaron")
         
-        # Krok 2: Przygotowanie
-        steps.append("\n[KROK 2] Przygotuj skladniki:")
-        steps.append("  - Pokroj pomidory")
-        steps.append("  - Posiekaj cebule")
-        steps.append("  - Odmierz makaron")
+    def cook(self):
+        self.steps.append("\n[KROK 3] Gotuj:")
+        self.steps.append("  - Podsmaż cebule")
+        self.steps.append("  - Dodaj pomidory, duś 10 min")
+        self.steps.append("  - Zalej bulionem")
+        self.steps.append("  - Gotuj 15 min")
+        self.steps.append("  - Zmiksuj")
+        self.steps.append("  - Dodaj smietanke i makaron")
+        self.steps.append("  - Gotuj 5 min")
         
-        # Krok 3: Gotowanie
-        steps.append("\n[KROK 3] Gotuj:")
-        steps.append("  - Podsmaż cebule")
-        steps.append("  - Dodaj pomidory, duś 10 min")
-        steps.append("  - Zalej bulionem")
-        steps.append("  - Gotuj 15 min")
-        steps.append("  - Zmiksuj")
-        steps.append("  - Dodaj smietanke i makaron")
-        steps.append("  - Gotuj 5 min")
+    def serve(self):
+        self.steps.append("\n[KROK 4] Podaj danie:")
+        self.steps.append("  - Przelej do misek")
+        self.steps.append("  - Dodaj groszek ptysiowy")
         
-        # Krok 4: Podawanie
-        steps.append("\n[KROK 4] Podaj danie:")
-        steps.append("  - Przelej do misek")
-        steps.append("  - Dodaj groszek ptysiowy")
-        
-        # Stopka - ZNOWU!
-        steps.append("\n" + "=" * 50)
-        steps.append("SMACZNEGO!")
-        steps.append("=" * 50)
-        
-        result = "\n".join(steps)
-        print(result)
-        
-        return {
-            "name": self.name,
-            "prep_time": self.prep_time,
-            "cook_time": self.cook_time,
-            "total_time": self.prep_time + self.cook_time,
-            "steps": steps
-        }
+       
 
 
 # Przykladowe uzycie
