@@ -3,7 +3,7 @@ Testy jednostkowe dla systemu przepisow kulinarnych.
 NIE MODYFIKUJ TESTOW! Powinny przechodzic zarowno przed jak i po refaktoryzacji.
 """
 import pytest
-from recipe_system import PastaRecipe, PizzaRecipe, SaladRecipe, SoupRecipe
+from src.recipe_system import PastaRecipe, PizzaRecipe, SaladRecipe, SoupRecipe
 
 
 class TestRecipeSystem:
